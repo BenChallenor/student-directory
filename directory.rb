@@ -28,9 +28,17 @@ def input_students
     puts "What are their hobbies?".center(50)
     hobbie = gets.chomp
     students << {name: name, cohort: cohort, cob: cob, height: height, hobbie: hobbie}
+    if students.count == 1
+    puts "Now we have 1 student".center(50)
+    puts "Name:".center(50)
+    name = gets.chomp
+  else
     puts "Now we have #{students.count} students".center(50)
+    puts "Name:".center(50)
     name= gets.chomp
   end
+end
+
   students
 end
 
@@ -63,7 +71,11 @@ def print_cohort(names)
 end
 
 def print_footer(names)
+  if names.count == 1
+    puts "Overall, we have #{names.count} great student".center(50)
+  else
   puts "Overall, we have #{names.count} great students".center(50)
+end
 end
 
 students = input_students
