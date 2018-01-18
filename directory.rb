@@ -45,6 +45,23 @@ def print(students)
   end
 end
 
+def print_cohort(names)
+  cohorts = {}
+  names.each do |student|
+    name = student[:name]
+    student_cohort = student[:cohort]
+    if cohorts[student_cohort] == nil
+      cohorts[student_cohort] = []
+    end
+    cohorts[student_cohort] << name
+  end
+  puts "Students by cohort:".center(50)
+  cohorts.each do |k, v|
+    puts k
+    puts v
+  end
+end
+
 def print_footer(names)
   puts "Overall, we have #{names.count} great students".center(50)
 end
@@ -52,4 +69,5 @@ end
 students = input_students
 print_header
 print(students)
+print_cohort(students)
 print_footer(students)
