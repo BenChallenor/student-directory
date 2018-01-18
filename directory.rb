@@ -1,29 +1,40 @@
+@students = []
+
 def interactive_menu
-  students = []
   loop do
-    puts "1. Input the students"
-    puts "2. Show the students"
-    puts "9. Exit"
-    selection = gets.chomp
-    case selection
-    when "1"
-      students = input_students
-    when "2"
-      print_header
-      print(students)
-      print_footer(students)
-    when "9"
-      exit
-    else
-      puts "I don't know what you meant, try again"
-    end
+    print_menu
+    process(gets.chomp)
   end
+end
+
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit" # 9 because we'll be adding more items
+end
+
+def show_students
+  print_header
+  print_student_list
+  print_footer
+end
+
+def process(selection)
+  case selection
+  when "1"
+    input_students
+  when "2"
+    show_students
+  when "9"
+    exit
+  else
+    puts "I don't know what you meant, try again"
   end
+end
 
 def input_students
   puts "Please enter the names of the students".center(50)
   puts "To finish, just hit return twice".center(50)
-  students = []
   cohorts = [:January, :February, :March, :April, :May, :June, :July, :August, :September, :October, :November, :December]
   name = gets.chomp
   while !name.empty? do
@@ -49,19 +60,19 @@ def input_students
     height = gets.chomp
     puts "What are their hobbies?".center(50)
     hobbie = gets.chomp
-    students << {name: name, cohort: cohort, cob: cob, height: height, hobbie: hobbie}
-    if students.count == 1
+    @students << {name: name, cohort: cohort, cob: cob, height: height, hobbie: hobbie}
+    if @students.count == 1
     puts "Now we have 1 student".center(50)
     puts "Name:".center(50)
     name = gets.chomp
   else
-    puts "Now we have #{students.count} students".center(50)
+    puts "Now we have #{@students.count} students".center(50)
     puts "Name:".center(50)
-    name= gets.chomp
+    name = gets.chomp
   end
 end
 
-  students
+  @students
 end
 
 def print_header
@@ -69,8 +80,8 @@ def print_header
   puts "-------------".center(50)
 end
 
-def print(students)
-  students.each do |student|
+def print_student_list
+  @students.each do |student|
     puts "#{student[:name]}, C.O.B: #{student[:cob]}, Height: #{student[:height]}, hobbies: #{student[:hobbie]}, Cohort:#{student[:cohort]}".center(50)
   end
 end
@@ -92,17 +103,12 @@ def print_cohort(names)
   end
 end
 
-def print_footer(names)
-  if names.count == 1
-    puts "Overall, we have #{names.count} great student".center(50)
+def print_footer
+  if @students.count == 1
+    puts "Overall, we have #{@students.count} great student".center(50)
   else
-  puts "Overall, we have #{names.count} great students".center(50)
+  puts "Overall, we have #{@students.count} great students".center(50)
 end
 end
 
 interactive_menu
-students = input_students
-print_header
-print(students)
-print_cohort(students)
-print_footer(students)
