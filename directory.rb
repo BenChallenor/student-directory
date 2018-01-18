@@ -2,15 +2,32 @@ def input_students
   puts "Please enter the names of the students".center(50)
   puts "To finish, just hit return twice".center(50)
   students = []
+  cohorts = [:January, :February, :March, :April, :May, :June, :July, :August, :September, :October, :November, :December]
   name = gets.chomp
   while !name.empty? do
+    puts "What cohort?".center(50)
+  cohort = gets.chomp.capitalize.to_sym
+   while true do
+     if cohort.empty?
+        cohort = "Unavailable"
+        break
+      elsif cohorts.include?(cohort)
+        break
+      else
+        puts "What Cohort?".center(50)
+        cohort = gets.chomp.capitalize.to_sym
+        until cohorts.include?(cohort)
+        break
+      end
+    end
+  end
     puts "What is their country of birth?".center(50)
     cob = gets.chomp
     puts "What is their height?".center(50)
     height = gets.chomp
     puts "What are their hobbies?".center(50)
     hobbie = gets.chomp
-    students << {name: name, cob: cob, height: height, hobbie: hobbie, cohort: :november}
+    students << {name: name, cohort: cohort, cob: cob, height: height, hobbie: hobbie}
     puts "Now we have #{students.count} students".center(50)
     name= gets.chomp
   end
@@ -24,10 +41,10 @@ end
 
 def print(students)
   students.each do |student|
-    puts "#{student[:name]}, C.O.B: #{student[:cob]}, Height: #{student[:height]}, hobbies: #{student[:hobbie]} (#{student[:cohort]}) cohort".center(50)
-
+    puts "#{student[:name]}, C.O.B: #{student[:cob]}, Height: #{student[:height]}, hobbies: #{student[:hobbie]}, Cohort:#{student[:cohort]}".center(50)
   end
 end
+
 def print_footer(names)
   puts "Overall, we have #{names.count} great students".center(50)
 end
