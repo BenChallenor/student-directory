@@ -3,7 +3,7 @@ def input_students
   puts "To finish, just hit return twice".center(50)
   students = []
   cohorts = [:January, :February, :March, :April, :May, :June, :July, :August, :September, :October, :November, :December]
-  name = gets.chomp
+  name = gets.strip
   while !name.empty? do
     puts "What cohort?".center(50)
   cohort = gets.chomp.capitalize.to_sym
