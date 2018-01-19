@@ -10,6 +10,7 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
+  puts "3. Save the list to students.csv"
   puts "4. Load the list from students.csv"
   puts "3. Save the list to students.csv"
   puts "9. Exit"
@@ -24,14 +25,19 @@ end
 def process(selection)
   case selection
   when "1"
+    puts "You have chosen to input the students"
     input_students
   when "2"
+    puts "You have chosen to show the students"
     show_students
   when "3"
+    puts "You have chosen to save the list"
     save_students
   when "4"
+    puts "You have chosen to load the list"
     load_students
   when "9"
+    puts "Exit"
     exit
   else
     puts "I don't know what you meant, try again"
