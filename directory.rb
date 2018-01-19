@@ -65,9 +65,9 @@ end
 
 def try_load_students
   filename = ARGV.first
-  return if filename.nil?
-  if File.exists?(filename)
-    load_students(filename)
+  if filename.nil?
+    load_students
+  elsif File.exists?(filename)
     puts "Loaded #{@students.count} from #{filename}"
   else
     puts "Sorry, #{filename} doesnt exist."
